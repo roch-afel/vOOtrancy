@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <title>Escolha seu voo</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: linear-gradient(135deg, #74ebd5, #ACB6E5);
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .container {
+      background: white;
+      padding: 30px 40px;
+      border-radius: 12px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+      width: 600px;
+      text-align: center;
+    }
+
+    h1 {
+      margin-bottom: 20px;
+      color: #333;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 15px;
+    }
+
+    th, td {
+      border: 1px solid #ccc;
+      padding: 10px;
+      text-align: center;
+    }
+
+    th {
+      background: #f4f4f4;
+    }
+
+    button {
+      background: #007BFF;
+      color: white;
+      font-weight: bold;
+      border: none;
+      border-radius: 6px;
+      padding: 8px 14px;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    button:hover {
+      background: #0056b3;
+    }
+
+    a {
+      display: inline-block;
+      margin-bottom: 15px;
+      text-decoration: none;
+      color: #007BFF;
+      font-weight: bold;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <a href="/src/main/resources/templates/index.html">← Voltar à página principal</a>
+    <h1>Selecione seu voo</h1>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Horário</th>
+          <th>Duração</th>
+          <th>Preço</th>
+          <th>Ação</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr th:each="flight : ${flights}">
+          <td th:text="${flight.horario}">04:30</td>
+          <td th:text="${flight.duracao}">2h 30m</td>
+          <td th:text="${flight.preco}">R$ 550</td>
+          <td>
+            <form action="/src/main/resources/templates/cadastro.html" method="post">
+              <input type="hidden" name="flightId" th:value="${flight.id}" />
+              <button type="submit">RESEVAR</button>
+            </form>
+          </td>
+        </tr>
+        <tr th:each="flight : ${flights}">
+          <td th:text="${flight.horario}">08:30</td>
+          <td th:text="${flight.duracao}">2h 30m</td>
+          <td th:text="${flight.preco}">R$ 550</td>
+          <td>
+            <form action="/src/main/resources/templates/cadastro.html" method="post">
+              <input type="hidden" name="flightId" th:value="${flight.id}" />
+              <button type="submit">RESEVAR</button>
+            </form>
+          </td>
+        </tr>
+        <tr th:each="flight : ${flights}">
+          <td th:text="${flight.horario}">12:30</td>
+          <td th:text="${flight.duracao}">2h 30m</td>
+          <td th:text="${flight.preco}">R$ 550</td>
+          <td>
+            <form action="/src/main/resources/templates/cadastro.html" method="post">
+              <input type="hidden" name="flightId" th:value="${flight.id}" />
+              <button type="submit">RESEVAR</button>
+            </form>
+          </td>
+        </tr>
+        <tr th:each="flight : ${flights}">
+          <td th:text="${flight.horario}">16:30</td>
+          <td th:text="${flight.duracao}">2h 30m</td>
+          <td th:text="${flight.preco}">R$ 550</td>
+          <td>
+            <form action="/src/main/resources/templates/cadastro.html" method="post">
+              <input type="hidden" name="flightId" th:value="${flight.id}" />
+              <button type="submit">RESEVAR</button>
+            </form>
+          </td>
+        </tr>
+        <tr th:each="flight : ${flights}">
+          <td th:text="${flight.horario}">20:30</td>
+          <td th:text="${flight.duracao}">2h 30m</td>
+          <td th:text="${flight.preco}">R$ 550</td>
+          <td>
+            <form action="/src/main/resources/templates/cadastro.html" method="post">
+              <input type="hidden" name="flightId" th:value="${flight.id}" />
+              <button type="submit">RESEVAR</button>
+            </form>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</body>
+</html>

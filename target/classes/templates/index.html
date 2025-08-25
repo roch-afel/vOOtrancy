@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <title>Agência de Viagens - Pesquisa</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: linear-gradient(135deg, #74ebd5, #ACB6E5);
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .container {
+      background: white;
+      padding: 30px 40px;
+      border-radius: 12px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+      width: 400px;
+      text-align: center;
+    }
+
+    h1 {
+      margin-bottom: 20px;
+      color: #333;
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+      text-align: left;
+    }
+
+    label {
+      font-weight: bold;
+      color: #555;
+    }
+
+    input, select {
+      width: 100%;
+      padding: 10px;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+      font-size: 14px;
+    }
+
+    button {
+      background: #007BFF;
+      color: white;
+      font-weight: bold;
+      border: none;
+      border-radius: 6px;
+      padding: 12px;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    button:hover {
+      background: #0056b3;
+    }
+
+    .history-link {
+      display: inline-block;
+      margin-top: 15px;
+      text-decoration: none;
+      color: #007BFF;
+      font-weight: bold;
+    }
+
+    .history-link:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Pesquise sua Viagem ✈️</h1>
+    <!-- <form action="/salvarHistorico" method="post"> -->
+    <form action="src/main/java/com/vootrancy/controller/HistoricoController" method="post">
+    <!-- <form action="/src/main/resources/templates/voos.html" method="post"> -->
+      <div>
+        <label for="destino">Destino:</label>
+        <!-- <input type="text" id="destino" name="destino" placeholder="Ex: São Paulo" required> -->
+        <select id="destino" name="destino">
+          <option value="guarulhos">Guarulhos (GRU) - SP</option>
+          <option value="brasilia">Brasília (BSB) - DF</option>
+          <option value="galeao">Galeão (GIG) - RJ</option>
+          <option value="confins">Confins (CNF) - MG</option>
+          <option value="recife">Recife (REC) - PE</option>
+          <option value="salvador">Salvador (SSA) - BA</option>
+        </select>
+      </div>
+
+      <div>
+        <label for="dataVolta">Data de Ida:</label>
+        <input type="date" id="dataIda" name="dataIda" required>
+      </div>
+
+      <div>
+        <label for="dataVolta">Data de Volta:</label>
+        <input type="date" id="dataVolta" name="dataVolta" required>
+      </div>
+
+      <div>
+        <label for="numPassagens">Número de Passagens:</label>
+        <input type="number" id="numPassagens" name="numPassagens" min="1" max="10" placeholder="Máx: 10" required>
+      </div>
+
+      <div>
+        <label for="classe">Classe:</label>
+        <select id="classe" name="classe" required>
+          <option value="Econômica">Econômica</option>
+          <option value="Executiva">Executiva</option>
+        </select>
+      </div>
+
+      <button type="submit">PESQUISAR</button>
+    </form>
+
+    <a class="history-link" href="/src/main/resources/templates/history.html">📜 Histórico de Busca</a>
+  </div>
+</body>
+</html>
