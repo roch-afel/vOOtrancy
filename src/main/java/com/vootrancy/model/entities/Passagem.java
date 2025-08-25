@@ -1,77 +1,71 @@
 package com.vootrancy.model.entities;
-import java.text.SimpleDateFormat;
 
 public class Passagem {
     private Passageiro passageiro;
-    private Voo voo;
-    private String portao;
-    private SimpleDateFormat diaIda;
-    private SimpleDateFormat horaIda;
-    private SimpleDateFormat diaVolta;
-    private SimpleDateFormat horaVolta;
+    private String codigoVoo;
+    private String origem;
+    private String destino;
+    private String dataHora;
+    private String portaoEmbarque;
+    private String assento; // Adicionado para a poltrona
+    private double valorFinal;
+    private String duracao;
 
-    public Passagem(Passageiro passageiro, Voo voo, SimpleDateFormat data, SimpleDateFormat horario) {
+    // Construtor principal que recebe todas as informações como parâmetros
+    public Passagem(Passageiro passageiro, String codigoVoo, String origem, String destino,
+                    String dataHora, String portaoEmbarque, String assento,
+                    double valorFinal, String duracao) {
         this.passageiro = passageiro;
-        this.voo = voo;
-        // this.portao = voo.getAviao().getPortao();
-        this.diaIda = new SimpleDateFormat("dd/MM/yyyy");
-        this.horaIda = new SimpleDateFormat("HH:mm");
+        this.codigoVoo = codigoVoo;
+        this.origem = origem;
+        this.destino = destino;
+        this.dataHora = dataHora;
+        this.portaoEmbarque = portaoEmbarque;
+        this.assento = assento;
+        this.valorFinal = valorFinal;
+        this.duracao = duracao;
     }
 
+    // Construtor vazio para serialização (ex: com Jackson)
+    public Passagem() {}
+
+    // ----------------------------------------
+    // Métodos Getters (apenas getters para imutabilidade)
+    // ----------------------------------------
+    
     public Passageiro getPassageiro() {
         return passageiro;
     }
 
-    public Voo getVoo() {
-        return voo;
+    public String getCodigoVoo() {
+        return codigoVoo;
     }
 
-    public Aviao getAviao() {
-        return voo.aviao;
+    public String getOrigem() {
+        return origem;
     }
 
-    public String getPortao() {
-        // this.portao = voo.getAviao().getPortao();
-        return portao;
+    public String getDestino() {
+        return destino;
     }
 
-    public SimpleDateFormat getDiaIda() {
-        return diaIda;
+    public String getDataHora() {
+        return dataHora;
     }
 
-    public SimpleDateFormat getHoraIda() {
-        return horaIda;
+    public String getPortaoEmbarque() {
+        return portaoEmbarque;
+    }
+    
+    public String getAssento() {
+        return assento;
     }
 
-        public SimpleDateFormat getDiaVolta() {
-        return diaVolta;
+    public double getValorFinal() {
+        return valorFinal;
     }
 
-    public SimpleDateFormat getHoraVolta() {
-        return horaVolta;
-    }
-
-    public void setPassageiro(Passageiro passageiro) {
-        this.passageiro = passageiro;
-    }
-
-    public void setVoo(Voo voo) {
-        this.voo = voo;
-    }
-
-    public void setDiaIda(SimpleDateFormat dia) {
-        this.diaIda = dia;
-    }
-
-    public void setHoraIda(SimpleDateFormat hora) {
-        this.horaIda = hora;
-    }
-
-        public void setDiaVolta(SimpleDateFormat dia) {
-        this.diaVolta = dia;
-    }
-
-    public void setHoraVolta(SimpleDateFormat hora) {
-        this.horaVolta = hora;
+    public String getDuracao() {
+        return duracao;
     }
 }
