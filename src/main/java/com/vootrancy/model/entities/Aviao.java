@@ -1,66 +1,82 @@
 package com.vootrancy.model.entities;
+import java.util.ArrayList;
 import java.util.List;
-// import Voo;
 
 public class Aviao {
     private String nome;
     private String modelo;
-    public List<String> poltronasLivres;
-    public List<String> poltronasOcupadas;
-    protected int maxLotacao;
-    protected Short portao;
-    
+    private List<String> poltronasLivres;
+    private List<String> poltronasOcupadas;
+    private int maxLotacao;
+    private boolean classeExecutiva; // Novo atributo para a classe do voo
 
-    public Aviao(String nome, String modelo, List<String> poltronasLivres, List<String> poltronasOcupadas, int lotacaoMaxima, short portao){
+    public Aviao(String nome, String modelo, boolean classeExecutiva) {
         this.nome = nome;
         this.modelo = modelo;
-        this.poltronasLivres = poltronasLivres;
-        this.poltronasOcupadas = poltronasOcupadas;
-        this.maxLotacao = lotacaoMaxima;
-        this.portao = portao;
+        this.classeExecutiva = classeExecutiva;
+
+        this.poltronasLivres = new ArrayList<>();
+        this.poltronasOcupadas = new ArrayList<>();
+
+        // Lógica para inicializar as poltronas com base na classe do voo
+        if (this.classeExecutiva) {
+            this.maxLotacao = 20; // Defina a lotação para voos executivos
+            inicializarPoltronasExecutivas();
+        } else {
+            this.maxLotacao = 50; // Defina a lotação para voos normais
+            inicializarPoltronasEconomicas();
+        }
+    }
+    
+    // Método auxiliar para inicializar as poltronas da classe executiva
+    private void inicializarPoltronasExecutivas() {
+        for (int i = 1; i <= maxLotacao; i++) {
+            poltronasLivres.add("E" + i); // Poltronas da executiva, e.g., "E1", "E2"
+        }
     }
 
-    public String getNome(){
+    // Método auxiliar para inicializar as poltronas da classe econômica
+    private void inicializarPoltronasEconomicas() {
+        for (int i = 1; i <= maxLotacao; i++) {
+            poltronasLivres.add("C" + i); // Poltronas da econômica, e.g., "C1", "C2"
+        }
+    }
+
+    public String getNome() {
         return nome;
     }
-    public String getModelo(){
+
+    public String getModelo() {
         return modelo;
     }
-    public List<String> getPoltronasLivres(){
+
+    public List<String> getPoltronasLivres() {
         return poltronasLivres;
     }
-        public List<String> getPoltronasOcupadas(){
+
+    public List<String> getPoltronasOcupadas() {
         return poltronasOcupadas;
     }
-    public int getLotacao(){
+
+    public int getMaxLotacao() {
         return maxLotacao;
     }
-    public short getPortao(){
-        return portao;
+    
+    public boolean isClasseExecutiva() {
+        return classeExecutiva;
     }
 
-    // Se o voo for da classe executiva, tera algumas poltras para escolher, se nao for, tera outras
-    // Adiciona passageiro a lista de poltronas ocupadas.
-    //@param poltrona: O nome da poltrona a ser ocupada (ex: "12A").
-    public void setAddPassageiro(String poltrona){
-        if (poltronasOcupadas.size() < maxLotacao && poltronasLivres.contains(poltrona)) {
-
-            // Remove a poltrona da lista de poltronas livres
+    public void reservarPoltrona(String poltrona) {
+        if (poltronasLivres.contains(poltrona)) {
             poltronasLivres.remove(poltrona);
-
-            // Adiciona a poltrona à lista de poltronas ocupadas
             poltronasOcupadas.add(poltrona);
-
             System.out.println("Passageiro adicionado à poltrona " + poltrona + ".");
-
-        } else if (poltronasOcupadas.size() >= maxLotacao) {
-            System.out.println("Erro: Voo está lotado. Não é possível adicionar mais passageiros.");
         } else {
             System.out.println("Erro: A poltrona " + poltrona + " não está disponível ou não existe.");
         }
     }
 
-    public int getTotalPassageiros(){
+    public int getTotalPassageiros() {
         return poltronasOcupadas.size();
     }
 }
